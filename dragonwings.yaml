@@ -1,0 +1,248 @@
+ 
+units:
+  # Parameters
+  # ==========
+  capx: cx - 0.5    # Key cap size horizontal
+  capy: cy  - 0.5   # Key cap size vertical
+  kx: cx            # Key spacing horizontal
+  ky: cy            # Key spacing vertical
+  distance: 45
+  rotation: -30
+
+points:
+  key:
+    padding: cy
+
+    tags:
+      keys: true
+      1u: true
+    footprints:
+      choc:
+        type: choc
+        nets:
+          from: =column_net
+          to: =colrow
+        params:
+          keycaps: true
+      diode:
+            type: diode
+            nets:
+              from: =colrow
+              to: =row_net
+            anchor:
+              shift: [0,-5]
+              rotate: 180
+            params:
+                through_hole: false
+
+  rotate: rotation
+
+  zones:
+    consonants:
+      rows:
+        bottom:
+          row_net: P8
+        home:
+          row_net: P16
+
+      columns:
+        pinky1:
+          spread: cx
+          rows:
+            home:
+              bind: [1,3,3,1]
+              column_net: P2
+              mirror:
+                column_net: P21
+            bottom:
+              bind: [3,3,1,1]
+              column_net: P2
+              mirror:
+                column_net: P21
+
+        pinky2:
+          spread: cx
+          rows:
+            home:
+              bind: [1,3,1,1]
+              column_net: P3
+              mirror:
+                column_net: P20
+            bottom:
+              bind: [3,3,1,3]
+              column_net: P3
+              mirror:
+                column_net: P20
+
+        ring:
+          spread: cx
+          stagger: 10
+
+          rows:
+            home:
+              bind: [1,3,3,1]
+              column_net: P4
+              mirror:
+                column_net: P19
+            bottom:
+              bind: [3,3,23,1]
+              column_net: P4
+              mirror:
+                column_net: P19
+
+
+        middle:
+          spread: cx
+          stagger: 8
+
+          rows:
+            home:
+              bind: [1,3,3,1]
+              column_net: P5
+              mirror:
+                column_net: P18
+            bottom:
+              bind: [3,3,1,1]
+              column_net: P5
+              mirror:
+                column_net: P18
+
+
+        index:
+          spread: cx
+          stagger: -2
+          rows:
+            home:
+              bind: [1,3,3,1]
+              column_net: P6
+              mirror:
+                column_net: P15
+            bottom:
+              bind: [3,3,1,1]
+              column_net: P6
+              mirror:
+                column_net: P15
+
+        inner:
+          spread: cx
+          rows:
+            home:
+              bind: [1,1,3,1]
+              column_net: P7
+              mirror:
+                column_net: P14
+            bottom:
+              bind: [3,1,1,1]
+              column_net: P7
+              mirror:
+                column_net: P14
+
+
+    vowels:
+      rows:
+          thumb:
+            row_net: P10
+      anchor:
+        ref: consonants_inner_bottom
+        shift: [-45, -30]
+      columns:
+        near:
+          spread: cx
+          rows:
+            thumb:
+              bind: [1,3,1,1]
+              column_net: P5
+              mirror:
+                column_net: P18
+
+        home:
+          spread: cx
+          rows:
+            thumb:
+              bind: [1,3,1,1]
+              column_net: P6
+              mirror:
+                column_net: P15
+        far:
+          spread: cx
+          rows:
+            thumb:
+              bind: [1,1,1,1]
+              column_net: P7
+              mirror:
+                column_net: P14
+
+
+
+  mirror: &mirror
+    ref: consonants_inner_home
+    distance: distance
+
+
+
+
+
+outlines:
+  glue:
+      unibody:
+          top:
+              left:
+                ref: consonants_inner_home
+              right:
+                ref: mirror_consonants_inner_home
+          bottom:
+              left:
+                ref: vowels_far_thumb
+              right:
+                ref: mirror_vowels_far_thumb
+  exports:
+    raw:
+      - type: keys
+        side: both
+        size: [1cx - 0.5, 1cy - 0.5]
+        glue: unibody
+
+    keycaps:
+      - type: keys
+        side: both
+        size: [1cx - 0.5, 1cy - 0.5]
+        bound: false
+
+    cutout:
+      - type: outline
+        name: raw
+        fillet: 2
+
+    preview:
+      [cutout, keycaps]
+
+
+
+pcbs:
+  dragonwings_test:
+    outlines:
+        keycaps:
+            outline: keycaps
+            layer: Eco1.User
+    footprints:
+      promicro:
+        type: promicro
+        anchor:
+          ref:
+            - consonants_inner_home
+            - mirror_consonants_inner_home
+          rotate: -90
+        params:
+          orientation: down
+      reset_switch:
+        type: button
+        anchor:
+          ref:
+            - consonants_inner_bottom
+            - mirror_consonants_inner_bottom
+          shift: [0, -8]
+          # rotate: 90
+        nets:
+          from: GND
+          to: RST
+

@@ -45,22 +45,4 @@ An ergonomic unibody split keyboard made for steno.
   – the dagonwings_backplate_gerbers are tested but are missing a hole for the 5th rubber foot without which the board is not stable on a flat surface
   – the dragonwings_backplate_gerbers_updated are genreated from the updated kicad files and contain the additional hole for the 5th foot – these have not been tested but should work and one then would not have to drill the hole manually
 - the dragonwings kicad files are contained in the root directory and the corresponding gerbers (tested and working) are in the `dragonwings_gerbers` directory, also available as a zip archive
-- `compiled firmware` contains compiled firmware without or with first-up chord-send and tap-and-hold chord repeat, the layers are the same for both versions and look like this:
-    - steno layer using GeminiPR:
-                             ┌───┬───┬───┬───┬───┬───┐    ┌───┬───┬───┬───┬───┬───┐
-                 not used -> │ - │ S │ T │ P │ H │ * │    │ * │ F │ P │ L │ T │ D │
-                             ├───┼───┼───┼───┼───┼───┤    ├───┼───┼───┼───┼───┼───┤
-      toggle qwerty steno -> │TG │ S │ K │ W │ R │ * │    │ * │ R │ B │ G │ S │ Z │
-                             └───┴───┴───┴───┴───┴───┘    └───┴───┴───┴───┴───┴───┘
-                                          ┌───┬───┬───┐  ┌───┬───┬───┐
-                                          │ # │ A │ O │  │ E │ U │ # │
-                                          └───┴───┴───┘  └───┴───┴───┘
-    - qwerty steno layer:
-                             ┌───┬───┬───┬───┬───┬───┐    ┌───┬───┬───┬───┬───┬───┐
-                backspace -> │ - │ q │ w │ e │ r │ t │    │ y │ u │ i │ o │ p │ [ │
-                             ├───┼───┼───┼───┼───┼───┤    ├───┼───┼───┼───┼───┼───┤
-      toggle qwerty steno -> │TG │ a │ s │ d │ f │ g │    │ h │ j │ k │ l │ ; │ ' │
-                             └───┴───┴───┴───┴───┴───┘    └───┴───┴───┴───┴───┴───┘
-                                          ┌───┬───┬───┐  ┌───┬───┬───┐
-                                          │ 1 │ c │ v │  │ n │ m │ 2 │
-                                          └───┴───┴───┘  └───┴───┴───┘
+- `compiled firmware` contains compiled firmware without or with first-up chord-send and tap-and-hold chord repeat – they contain two layers, one steno layer using GeminiPR and a qwerty steno layer which can be toggled with the lower key of the leftmost column

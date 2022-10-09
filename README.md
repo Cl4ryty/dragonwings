@@ -40,6 +40,7 @@ An ergonomic unibody split keyboard made for steno.
 
 
 ## repository file structure
+- ![guide for assembling the keyboard](assembly_instructions.md)
 - `pretty_pictures` contains renders and images of the built keyboard
 - `dragonwings_backplate` contains KiCAD files for the backplate as well as the gebers 
   – the dagonwings_backplate_gerbers are tested but are missing a hole for the 5th rubber foot without which the board is not stable on a flat surface
